@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+  res.send('Welcome To iNote Server');
+})
 app.use('/notes', notes);
 database.connect().then((data) => {
   if (!data.connected) {

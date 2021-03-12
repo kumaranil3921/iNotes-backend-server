@@ -24,7 +24,7 @@ async function getNote(req, res) {
     const notes = await Notes.find({ _id: body.id });
     responses.sendResponse(res, notes);
   } catch (error) {
-    responses.sendServerErrorResponse();
+    responses.sendServerErrorResponse(res);
   }
 }
 async function createNote(req, res) {
