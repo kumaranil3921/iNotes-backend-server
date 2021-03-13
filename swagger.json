@@ -1,0 +1,251 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "iNotes API Documentation",
+    "description": ""
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Authorization",
+      "description": "Endpoints"
+    },
+    {
+      "name": "Notes",
+      "description": "Endpoints"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "paths": {
+    "/token": {
+      "get": {
+        "tags": [
+          "Authorization"
+        ],
+        "description": "Generate token",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/notes": {
+      "get": {
+        "tags": [
+          "Notes"
+        ],
+        "description": "Get all Notes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Notes"
+        ],
+        "description": "Create New note",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateNote"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/notes/{id}": {
+      "get": {
+        "tags": [
+          "Notes"
+        ],
+        "description": "Get Note By id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Notes"
+        ],
+        "description": "Update Note",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateNote"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Notes"
+        ],
+        "description": "Delete Note",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Notes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "604bbe16507c2b4508dfac80"
+          },
+          "title": {
+            "type": "string",
+            "example": "Note 1"
+          },
+          "description": {
+            "type": "string",
+            "example": "test note"
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      }
+    },
+    "Note": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "604bbe16507c2b4508dfac80"
+        },
+        "title": {
+          "type": "string",
+          "example": "Note 1"
+        },
+        "description": {
+          "type": "string",
+          "example": "test note"
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
+        }
+      }
+    },
+    "CreateNote": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Note 1",
+          "required": [
+            "type"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "example": "test note",
+          "required": [
+            "description"
+          ]
+        }
+      }
+    },
+    "UpdateNote": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Note 1",
+          "required": [
+            "type"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "example": "test note",
+          "required": [
+            "description"
+          ]
+        }
+      }
+    }
+  }
+}
